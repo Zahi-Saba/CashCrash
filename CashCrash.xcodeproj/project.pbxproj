@@ -6,14 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		60E4A16F3048558D0016E12A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60E4A128304834910016E12A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60E4A12F304834910016E12A;
+			remoteInfo = CashCrash;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		60E4A130304834910016E12A /* CashCrash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashCrash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60E4A16B3048558D0016E12A /* CashCrashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CashCrashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		60E4A132304834910016E12A /* CashCrash */ = {
+		60E4A153304848DD0016E12A /* CashCrash */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CashCrash;
+			sourceTree = "<group>";
+		};
+		60E4A16C3048558D0016E12A /* CashCrashTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CashCrashTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,13 +42,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60E4A1683048558D0016E12A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		60E4A127304834910016E12A = {
 			isa = PBXGroup;
 			children = (
-				60E4A132304834910016E12A /* CashCrash */,
+				60E4A153304848DD0016E12A /* CashCrash */,
+				60E4A16C3048558D0016E12A /* CashCrashTests */,
 				60E4A131304834910016E12A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				60E4A130304834910016E12A /* CashCrash.app */,
+				60E4A16B3048558D0016E12A /* CashCrashTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,7 +86,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				60E4A132304834910016E12A /* CashCrash */,
+				60E4A153304848DD0016E12A /* CashCrash */,
 			);
 			name = CashCrash;
 			packageProductDependencies = (
@@ -69,6 +94,29 @@
 			productName = CashCrash;
 			productReference = 60E4A130304834910016E12A /* CashCrash.app */;
 			productType = "com.apple.product-type.application";
+		};
+		60E4A16A3048558D0016E12A /* CashCrashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60E4A1713048558D0016E12A /* Build configuration list for PBXNativeTarget "CashCrashTests" */;
+			buildPhases = (
+				60E4A1673048558D0016E12A /* Sources */,
+				60E4A1683048558D0016E12A /* Frameworks */,
+				60E4A1693048558D0016E12A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60E4A1703048558D0016E12A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				60E4A16C3048558D0016E12A /* CashCrashTests */,
+			);
+			name = CashCrashTests;
+			packageProductDependencies = (
+			);
+			productName = CashCrashTests;
+			productReference = 60E4A16B3048558D0016E12A /* CashCrashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					60E4A12F304834910016E12A = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					60E4A16A3048558D0016E12A = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 60E4A12F304834910016E12A;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				60E4A12F304834910016E12A /* CashCrash */,
+				60E4A16A3048558D0016E12A /* CashCrashTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		60E4A12E304834910016E12A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60E4A1693048558D0016E12A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60E4A1673048558D0016E12A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60E4A1703048558D0016E12A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60E4A12F304834910016E12A /* CashCrash */;
+			targetProxy = 60E4A16F3048558D0016E12A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		60E4A139304834930016E12A /* Debug */ = {
@@ -306,6 +381,46 @@
 			};
 			name = Release;
 		};
+		60E4A1723048558D0016E12A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZahiOrg.CashCrashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CashCrash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CashCrash";
+			};
+			name = Debug;
+		};
+		60E4A1733048558D0016E12A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZahiOrg.CashCrashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CashCrash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CashCrash";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +438,15 @@
 			buildConfigurations = (
 				60E4A13C304834930016E12A /* Debug */,
 				60E4A13D304834930016E12A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60E4A1713048558D0016E12A /* Build configuration list for PBXNativeTarget "CashCrashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60E4A1723048558D0016E12A /* Debug */,
+				60E4A1733048558D0016E12A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

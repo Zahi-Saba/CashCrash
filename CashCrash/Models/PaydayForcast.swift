@@ -6,3 +6,9 @@
 //
 
 import Foundation
+struct PaydayForecast {
+    let predictedBalance: Double
+    let totalSpent: Double
+    let remainingBudget: Double
+    let spendingAdvice: String
+}
