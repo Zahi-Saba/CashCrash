@@ -18,15 +18,31 @@ struct DashboardView: View {
                 Text("Cash Crash")
                     .font(.largeTitle)
                     .bold()
-                
-                Text("Total Spent")
-                    .font(.headline)
-                
-                Text("$\(viewModel.totalSpent, specifier: "%.2f")")
-                    .font(.title)
+
+                VStack(spacing: 8) {
+                    Text("Total Spent")
+                        .font(.headline)
+
+                    Text("$\(viewModel.totalSpent, specifier: "%.2f")")
+                        .font(.largeTitle)
+                        .bold()
+                }
+                .padding()
+                .background(.gray.opacity(0.1))
+                .cornerRadius(15)
                 
                 if let budget = viewModel.budget {
-                    Text("Spending Limit: $\(budget.spendingLimit, specifier: "%.2f")")
+                    VStack(spacing: 8) {
+                        Text("Spending Limit")
+                            .font(.headline)
+
+                        Text("$\(budget.spendingLimit, specifier: "%.2f")")
+                            .font(.title2)
+                            .bold()
+                    }
+                    .padding()
+                    .background(.gray.opacity(0.1))
+                    .cornerRadius(15)
                 } else {
                     Text("No spending budget set yet.")
                 }
@@ -35,16 +51,51 @@ struct DashboardView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                NavigationLink("Record Expense") {
-                    Text("Record Expense Screen")
+                NavigationLink {
+                    RecordExpenseView(viewModel: viewModel)
+                } label: {
+                    Text("Record Expense")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.purple.opacity(0.8))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                        )
+                        .shadow(radius: 4)
+                }
+                NavigationLink {
+                    SetBudgetView(viewModel: viewModel)
+                } label: {
+                    Text("Set Spending Budget")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.purple.opacity(0.8))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                        )
+                        .shadow(radius: 4)
                 }
                 
-                NavigationLink("Set Spending Budget") {
-                    Text("Budget Screen")
-                }
-                
-                NavigationLink("Payday Forecast") {
-                    Text("Payday Forecast Screen")
+                NavigationLink {
+                    PaydayForecastView(viewModel: viewModel)
+                } label: {
+                    Text("Payday Forecast")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.purple.opacity(0.8))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                        )
+                        .shadow(radius: 4)
                 }
                 
                 Spacer()
@@ -53,3 +104,4 @@ struct DashboardView: View {
         }
     }
 }
+ 

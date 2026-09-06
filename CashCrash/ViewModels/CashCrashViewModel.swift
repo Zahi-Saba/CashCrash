@@ -28,6 +28,22 @@ class CashCrashViewModel : ObservableObject{
             
             return total
         }
+    var paydayForecast: PaydayForecast? {
+        
+        guard let budget = budget else {
+            return nil
+        }
+        
+        let remainingBudget = budget.spendingLimit - totalSpent
+        
+        return PaydayForecast(
+            spendingLimit: budget.spendingLimit,
+            totalSpent: totalSpent,
+            remainingBudget: remainingBudget,
+            payday: budget.payday,
+            spendingAdvice: spendingAdvice
+        )
+    }
     func recordExpense(
         name: String,
         amount: Double,

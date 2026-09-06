@@ -7,8 +7,9 @@
 
 import Foundation
 struct PaydayForecast {
-    let predictedBalance: Double
+    let spendingLimit: Double
     let totalSpent: Double
     let remainingBudget: Double
+    let payday: Date
     let spendingAdvice: String
 }
