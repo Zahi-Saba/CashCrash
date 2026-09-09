@@ -50,6 +50,45 @@ struct DashboardView: View {
                 Text(viewModel.spendingAdvice)
                     .multilineTextAlignment(.center)
                     .padding()
+                if viewModel.expenses.isEmpty {
+                    Text("No expenses recorded yet.")
+                        .foregroundColor(.gray)
+                } else {
+                    VStack(alignment: .leading, spacing: 10) {
+                        
+                        Text("Recent Expenses")
+                            .font(.headline)
+                        
+                        ScrollView {
+                            VStack(spacing: 10) {
+                                
+                                ForEach(viewModel.expenses) { expense in
+                                    HStack {
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text(expense.name)
+                                                .bold()
+                                            
+                                            Text(expense.category)
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Text("$\(expense.amount, specifier: "%.2f")")
+                                            .bold()
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                            }
+                        }
+                        .frame(height: 180)
+                    }
+                    .padding()
+                    .background(.gray.opacity(0.1))
+                    .cornerRadius(15)
+                }
                 
                 NavigationLink {
                     RecordExpenseView(viewModel: viewModel)
