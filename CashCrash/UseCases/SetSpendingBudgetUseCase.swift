@@ -3,8 +3,6 @@
 //  CashCrash
 //
 //  Created by Zahi Saba on 4/9/2026.
-//
-// Creates a spending budget for the user until their next payday.
 import Foundation
 
 enum SetSpendingBudgetError: LocalizedError {
@@ -22,6 +20,11 @@ enum SetSpendingBudgetError: LocalizedError {
     }
 }
 
+/// Creates a spending budget for the user until their next payday.
+///
+/// Business Rules:
+/// The spending limit must be greater than zero.
+/// The payday must be a future date.
 struct SetSpendingBudgetUseCase {
     
     func execute(

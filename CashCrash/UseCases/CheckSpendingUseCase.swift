@@ -3,8 +3,6 @@
 //  CashCrash
 //
 //  Created by Zahi Saba on 4/9/2026.
-// Checks how the user's spending compares with their spending budget.
-
 import Foundation
 enum CheckSpendingError: LocalizedError {
 case invalidTotalSpent
@@ -16,7 +14,12 @@ var errorDescription: String? {
     }
 }
 }
-
+/// Checks how the user's total spending compares with their spending budget.
+///
+/// Business Rules:
+/// Total spending cannot be negative.
+/// Spending at 80% or more of the budget gives the user a warning.
+/// Reaching or exceeding the spending limit gives an over-budget warning.
 struct CheckSpendingUseCase {
     func execute(
             totalSpent: Double,

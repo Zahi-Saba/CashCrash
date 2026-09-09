@@ -3,8 +3,6 @@
 //  CashCrash
 //
 //  Created by Zahi Saba on 2/9/2026.
-//Records a new expense for the Cash Crash user.
-
 import Foundation
 
 enum RecordExpenseError: LocalizedError {
@@ -25,6 +23,13 @@ enum RecordExpenseError: LocalizedError {
         }
     }
 }
+
+/// Records a new expense for the Cash Crash user.
+///
+/// Business Rules:
+/// The expense amount must be greater than zero.
+/// The expense name cannot be empty.
+/// The expense category cannot be empty.
 struct RecordExpenseUseCase {
     
     func execute(
