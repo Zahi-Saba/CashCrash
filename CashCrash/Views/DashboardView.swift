@@ -63,23 +63,32 @@ struct DashboardView: View {
                             VStack(spacing: 10) {
                                 
                                 ForEach(viewModel.expenses) { expense in
-                                    HStack {
+                                    
+                                    NavigationLink {
+                                        EditExpenseView(
+                                            viewModel: viewModel,
+                                            expense: expense
+                                        )
+                                    } label: {
                                         
-                                        VStack(alignment: .leading) {
-                                            Text(expense.name)
-                                                .bold()
+                                        HStack {
                                             
-                                            Text(expense.category)
-                                                .font(.caption)
-                                                .foregroundColor(.gray)
+                                            VStack(alignment: .leading) {
+                                                Text(expense.name)
+                                                    .bold()
+                                                
+                                                Text(expense.category)
+                                                    .font(.caption)
+                                                    .foregroundColor(.gray)
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            Text("$\(expense.amount, specifier: "%.2f")")
+                                                .bold()
                                         }
-                                        
-                                        Spacer()
-                                        
-                                        Text("$\(expense.amount, specifier: "%.2f")")
-                                            .bold()
+                                        .padding(.vertical, 5)
                                     }
-                                    .padding(.vertical, 5)
                                 }
                             }
                         }

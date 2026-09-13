@@ -18,7 +18,8 @@ class CashCrashViewModel : ObservableObject{
     private let recordExpenseUseCase = RecordExpenseUseCase()
         private let budgetUseCase = SetSpendingBudgetUseCase()
         private let checkSpendingUseCase = CheckSpendingUseCase()
-    
+    private let editExpenseUseCase = EditExpenseUseCase()
+    private let deleteExpenseUseCase = DeleteExpenseUseCase()
     var totalSpent: Double {
             var total = 0.0
             
@@ -100,5 +101,45 @@ class CashCrashViewModel : ObservableObject{
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+    
+    func editExpense(
+        expense: Expense,
+        name: String,
+        amount: Double,
+        category: String,
+        date: Date
+    ) {
+        do {
+            let updatedExpense = try editExpenseUseCase.execute(
+                expense: expense,
+                name: name,
+                amount: amount,
+                category: category,
+                date: date
+            )
+            
+            for index in expenses.indices {
+                if expenses[index].id == updatedExpense.id {
+                    expenses[index] = updatedExpense
+                }
+            }
+            
+            errorMessage = nil
+            updateSpendingAdvice()
+            
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    func deleteExpense(expense: Expense) {
+        
+        expenses = deleteExpenseUseCase.execute(
+            expenses: expenses,
+            expense: expense
+        )
+        
+        errorMessage = nil
+        updateSpendingAdvice()
     }
 }

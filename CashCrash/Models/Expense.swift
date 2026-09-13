@@ -13,8 +13,8 @@
 import Foundation
 struct Expense: Identifiable {
     let id = UUID()
-    let name: String
-    let amount: Double
-    let category: String
-    let date: Date
+    var name: String
+    var amount: Double
+    var category: String
+    var date: Date
 }
