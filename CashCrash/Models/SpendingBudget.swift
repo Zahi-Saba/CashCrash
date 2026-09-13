@@ -10,7 +10,7 @@
 /// The payday must be a future date.
 
 import Foundation
-struct SpendingBudget {
+struct SpendingBudget: Codable{
     let spendingLimit: Double
     let payday: Date
 }

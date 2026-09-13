@@ -20,6 +20,11 @@ class CashCrashViewModel : ObservableObject{
         private let checkSpendingUseCase = CheckSpendingUseCase()
     private let editExpenseUseCase = EditExpenseUseCase()
     private let deleteExpenseUseCase = DeleteExpenseUseCase()
+    private let expensesKey = "SavedExpenses"
+    private let budgetKey = "SavedBudget"
+    init() {
+        loadData()
+    }
     var totalSpent: Double {
             var total = 0.0
             
@@ -61,6 +66,7 @@ class CashCrashViewModel : ObservableObject{
             
             expenses.append(expense)
             errorMessage = nil
+            saveExpenses()
             updateSpendingAdvice()
             
         } catch {
@@ -77,8 +83,8 @@ class CashCrashViewModel : ObservableObject{
                 spendingLimit: spendingLimit,
                 payday: payday
             )
-            
             errorMessage = nil
+            saveBudget()
             updateSpendingAdvice()
             
         } catch {
@@ -124,8 +130,8 @@ class CashCrashViewModel : ObservableObject{
                     expenses[index] = updatedExpense
                 }
             }
-            
             errorMessage = nil
+            saveExpenses()
             updateSpendingAdvice()
             
         } catch {
@@ -138,8 +144,50 @@ class CashCrashViewModel : ObservableObject{
             expenses: expenses,
             expense: expense
         )
-        
         errorMessage = nil
+        saveExpenses()
+        updateSpendingAdvice()
+    }
+    private func saveExpenses() {
+        do {
+            let data = try JSONEncoder().encode(expenses)
+            UserDefaults.standard.set(data, forKey: expensesKey)
+        } catch {
+            errorMessage = "Unable to save expenses."
+        }
+    }
+    private func saveBudget() {
+        do {
+            let data = try JSONEncoder().encode(budget)
+            UserDefaults.standard.set(data, forKey: budgetKey)
+        } catch {
+            errorMessage = "Unable to save your spending budget."
+        }
+    }
+    private func loadData() {
+        
+        if let expenseData = UserDefaults.standard.data(forKey: expensesKey) {
+            do {
+                expenses = try JSONDecoder().decode(
+                    [Expense].self,
+                    from: expenseData
+                )
+            } catch {
+                errorMessage = "Unable to load saved expenses."
+            }
+        }
+        
+        if let budgetData = UserDefaults.standard.data(forKey: budgetKey) {
+            do {
+                budget = try JSONDecoder().decode(
+                    SpendingBudget.self,
+                    from: budgetData
+                )
+            } catch {
+                errorMessage = "Unable to load your saved budget."
+            }
+        }
+        
         updateSpendingAdvice()
     }
 }

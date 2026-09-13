@@ -13,21 +13,19 @@ struct DashboardView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                
+            VStack(spacing: 14) {
                 Text("Cash Crash")
-                    .font(.largeTitle)
+                    .font(.title)
                     .bold()
-
                 VStack(spacing: 8) {
                     Text("Total Spent")
                         .font(.headline)
 
                     Text("$\(viewModel.totalSpent, specifier: "%.2f")")
-                        .font(.largeTitle)
+                        .font(.title)
                         .bold()
                 }
-                .padding()
+                .padding(12)
                 .background(.gray.opacity(0.1))
                 .cornerRadius(15)
                 
@@ -40,7 +38,7 @@ struct DashboardView: View {
                             .font(.title2)
                             .bold()
                     }
-                    .padding()
+                    .padding(12)
                     .background(.gray.opacity(0.1))
                     .cornerRadius(15)
                 } else {
@@ -49,7 +47,7 @@ struct DashboardView: View {
                 
                 Text(viewModel.spendingAdvice)
                     .multilineTextAlignment(.center)
-                    .padding()
+                    .padding(.vertical, 5)
                 if viewModel.expenses.isEmpty {
                     Text("No expenses recorded yet.")
                         .foregroundColor(.gray)
@@ -149,6 +147,8 @@ struct DashboardView: View {
                 Spacer()
             }
             .padding()
+            .navigationTitle("")
+                    .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
