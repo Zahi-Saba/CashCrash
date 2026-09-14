@@ -140,13 +140,19 @@ class CashCrashViewModel : ObservableObject{
     }
     func deleteExpense(expense: Expense) {
         
-        expenses = deleteExpenseUseCase.execute(
-            expenses: expenses,
-            expense: expense
-        )
-        errorMessage = nil
-        saveExpenses()
-        updateSpendingAdvice()
+        do {
+            expenses = try deleteExpenseUseCase.execute(
+                expenses: expenses,
+                expense: expense
+            )
+            
+            errorMessage = nil
+            saveExpenses()
+            updateSpendingAdvice()
+            
+        } catch {
+            errorMessage = error.localizedDescription
+        }
     }
     private func saveExpenses() {
         do {

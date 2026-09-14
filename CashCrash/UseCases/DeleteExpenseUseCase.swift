@@ -6,6 +6,16 @@
 //
 
 import Foundation
+enum DeleteExpenseError: LocalizedError {
+    case expenseNotFound
+    
+    var errorDescription: String? {
+        switch self {
+        case .expenseNotFound:
+            return "The expense could not be found."
+        }
+    }
+}
 
 /// Deletes an existing expense from the user's recorded expenses.
 struct DeleteExpenseUseCase {
@@ -13,17 +23,17 @@ struct DeleteExpenseUseCase {
     func execute(
         expenses: [Expense],
         expense: Expense
-    ) -> [Expense] {
+    ) throws -> [Expense] {
         
         var updatedExpenses = expenses
         
         for index in updatedExpenses.indices {
             if updatedExpenses[index].id == expense.id {
                 updatedExpenses.remove(at: index)
-                break
+                return updatedExpenses
             }
         }
         
-        return updatedExpenses
+        throw DeleteExpenseError.expenseNotFound
     }
 }

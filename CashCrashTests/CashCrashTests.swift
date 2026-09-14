@@ -14,7 +14,9 @@ struct CashCrashTests {
     let useCase = RecordExpenseUseCase()
     let budgetUseCase = SetSpendingBudgetUseCase()
     let checkSpendingUseCase = CheckSpendingUseCase()
-    
+    let editExpenseUseCase = EditExpenseUseCase()
+    let deleteExpenseUseCase = try DeleteExpenseUseCase()
+
     @Test
     func recordExpenseSucceedsWithValidInput() throws {
         let expense = try useCase.execute(
@@ -150,6 +152,94 @@ struct CashCrashTests {
             try checkSpendingUseCase.execute(
                 totalSpent: -20,
                 budget: budget
+            )
+        }
+    }
+    @Test
+    func editExpenseUpdatesExistingExpense() throws {
+        
+        let expense = Expense(
+            name: "Burger",
+            amount: 120,
+            category: "Food",
+            date: Date()
+        )
+        
+        let updatedExpense = try editExpenseUseCase.execute(
+            expense: expense,
+            name: "Burger",
+            amount: 12,
+            category: "Food",
+            date: expense.date
+        )
+        
+        #expect(updatedExpense.name == "Burger")
+        #expect(updatedExpense.amount == 12)
+        #expect(updatedExpense.category == "Food")
+        #expect(updatedExpense.id == expense.id)
+    }
+    @Test
+    func editExpenseFailsWhenAmountIsZero() {
+        
+        let expense = Expense(
+            name: "Burger",
+            amount: 12,
+            category: "Food",
+            date: Date()
+        )
+        
+        #expect(throws: EditExpenseError.invalidAmount) {
+            try editExpenseUseCase.execute(
+                expense: expense,
+                name: "Burger",
+                amount: 0,
+                category: "Food",
+                date: expense.date
+            )
+        }
+    }
+    @Test
+    func deleteExpenseRemovesExistingExpense() throws {
+        
+        let expense = Expense(
+            name: "Coffee",
+            amount: 5,
+            category: "Food",
+            date: Date()
+        )
+        
+        let expenses = [expense]
+        
+        let updatedExpenses = try deleteExpenseUseCase.execute(
+            expenses: expenses,
+            expense: expense
+        )
+        
+        #expect(updatedExpenses.isEmpty)
+    }
+    @Test
+    func deleteExpenseFailsWhenExpenseIsNotFound() {
+        
+        let savedExpense = Expense(
+            name: "Coffee",
+            amount: 5,
+            category: "Food",
+            date: Date()
+        )
+        
+        let differentExpense = Expense(
+            name: "Lunch",
+            amount: 15,
+            category: "Food",
+            date: Date()
+        )
+        
+        let expenses = [savedExpense]
+        
+        #expect(throws: DeleteExpenseError.expenseNotFound) {
+            try deleteExpenseUseCase.execute(
+                expenses: expenses,
+                expense: differentExpense
             )
         }
     }
