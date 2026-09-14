@@ -9,7 +9,6 @@
 /// The expense amount must be greater than zero.
 /// The expense name cannot be empty.
 /// The expense category cannot be empty.
-/// An expense must have an amount greater than zero.
 import Foundation
 struct Expense: Identifiable, Codable{
     var id = UUID()
